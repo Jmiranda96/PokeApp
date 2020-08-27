@@ -40,12 +40,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="0.0" y="800"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -57,6 +57,7 @@
                         <segue destination="wdz-yK-Em0" kind="relationship" relationship="viewControllers" id="ALc-EM-ZYW"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="zta-hF-Vle" kind="relationship" relationship="viewControllers" id="3Rz-1R-zIb"/>
+                        <segue destination="jaa-y5-V0d" kind="presentation" identifier="pokemonDetails" id="9Ph-xb-CAt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -96,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQi-Be-eT6" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="799.55357142857144"/>
+            <point key="canvasLocation" x="916" y="800"/>
         </scene>
         <!--Pokemon-->
         <scene sceneID="Ag7-QM-yBm">
@@ -127,7 +128,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ywl-2F-Z4l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="914" y="-303"/>
+            <point key="canvasLocation" x="-849" y="800"/>
+        </scene>
+        <!--Pokemon Details View Controller-->
+        <scene sceneID="Xi5-9e-gUU">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="jaa-y5-V0d" customClass="PokemonDetailsViewController" customModule="PokeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yYl-s2-plh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pokemon Icon" translatesAutoresizingMaskIntoConstraints="NO" id="gKN-GH-kZV">
+                                <rect key="frame" x="122" y="368" width="170" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="snk-Kx-XBm"/>
+                                    <constraint firstAttribute="height" constant="170" id="wDh-Mw-2jw"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yk8-9W-P11">
+                                <rect key="frame" x="170" y="612" width="74" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gKN-GH-kZV" firstAttribute="centerX" secondItem="BGr-rC-kb3" secondAttribute="centerX" id="LE5-rN-r53"/>
+                            <constraint firstItem="yk8-9W-P11" firstAttribute="centerX" secondItem="gKN-GH-kZV" secondAttribute="centerX" id="Vce-Gm-hvl"/>
+                            <constraint firstItem="gKN-GH-kZV" firstAttribute="centerY" secondItem="BGr-rC-kb3" secondAttribute="centerY" id="eWb-d1-Rxb"/>
+                            <constraint firstItem="yk8-9W-P11" firstAttribute="top" secondItem="gKN-GH-kZV" secondAttribute="bottom" constant="74" id="oab-fl-4a3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BGr-rC-kb3"/>
+                    </view>
+                    <connections>
+                        <outlet property="mainImage" destination="gKN-GH-kZV" id="7N9-Db-NGD"/>
+                        <outlet property="mainLabel" destination="yk8-9W-P11" id="VhR-Fk-7BC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hrw-Wg-XA3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1049" y="0.0"/>
         </scene>
     </scenes>
     <resources>
