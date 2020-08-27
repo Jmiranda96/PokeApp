@@ -35,16 +35,66 @@ class PokemonTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setupPokemonCell(name: String, number: String, sprite: UIImage = #imageLiteral(resourceName: "Pokemon Icon"), types: [UIImage] = [#imageLiteral(resourceName: "Moves Icon"),#imageLiteral(resourceName: "Moves Icon")]){
+    func setupPokemonCell(name: String, number: Int, sprite: String, types: [String]){
         self.mainTitle.text = name
-        self.secondaryTitle.text = "#"+number
-        self.mainImage.image = sprite
-        self.mainType.image = types[0]
+        self.secondaryTitle.text = String(format: "#%03d", number)
+        self.mainType.image = UIImage(named: types[0])! //cropImage1(image: UIImage(named: types[0])!, rect: CGRect(x: 20, y: 20, width: 40.0, height: 40.0))
         if types.count > 1 {
-            self.secondaryType.image = types[1]
+            self.secondaryType.isHidden = false
+            self.secondaryType.image = UIImage(named: types[1])! // cropImage1(image: UIImage(named: types[1])!, rect: CGRect(x: 20, y: 20, width: 40.0, height: 40.0))
         } else {
             self.secondaryType.isHidden = true
         }
-        self.descriptionLabel.removeFromSuperview()
+        self.descriptionLabel.isHidden = true
+        
+//        self.mainImage.load(url: URL(string: sprite)!)
+        
+        
+        let imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(String(number)).png"
+        
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: URL(string: imgUrl)!) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.mainImage.image =  image //self!
+                    }
+                }
+            }
+        }
+        
+        
+        
     }
+    
+    func cropImage1(image: UIImage, rect: CGRect) -> UIImage {
+        let cgImage = image.cgImage! // better to write "guard" in realm app
+        let croppedCGImage = cgImage.cropping(to: rect)
+        return UIImage(cgImage: croppedCGImage!)
+    }
+    
+//    func cropImage(_ inputImage: UIImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> UIImage?
+//    {
+//        let imageViewScale = max(inputImage.size.width / viewWidth,
+//                                 inputImage.size.height / viewHeight)
+//
+//        // Scale cropRect to handle images larger than shown-on-screen size
+//        let cropZone = CGRect(x:cropRect.origin.x * imageViewScale,
+//                              y:cropRect.origin.y * imageViewScale,
+//                              width:cropRect.size.width * imageViewScale,
+//                              height:cropRect.size.height * imageViewScale)
+//
+//        // Perform cropping in Core Graphics
+//        guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone)
+//        else {
+//            return nil
+//        }
+//
+//        // Return image to UIImage
+//        let croppedImage: UIImage = UIImage(cgImage: cutImageRef)
+//        return croppedImage
+//    }
+    
 }
+
+    
+    
