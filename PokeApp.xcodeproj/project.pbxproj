@@ -18,6 +18,7 @@
 		F0D5F9E224F7516D0045A34A /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5F9E024F7516D0045A34A /* PokemonTableViewCell.swift */; };
 		F0D5F9E324F7516D0045A34A /* PokemonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D5F9E124F7516D0045A34A /* PokemonTableViewCell.xib */; };
 		F0D5F9EA24F763D90045A34A /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5F9E924F763D90045A34A /* PokemonModel.swift */; };
+		F0D5F9EC24F779CD0045A34A /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5F9EB24F779CD0045A34A /* UIImageViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F0D5F9E024F7516D0045A34A /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		F0D5F9E124F7516D0045A34A /* PokemonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonTableViewCell.xib; sourceTree = "<group>"; };
 		F0D5F9E924F763D90045A34A /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
+		F0D5F9EB24F779CD0045A34A /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				F0D5F9E024F7516D0045A34A /* PokemonTableViewCell.swift */,
 				F0D5F9E124F7516D0045A34A /* PokemonTableViewCell.xib */,
+				F0D5F9EB24F779CD0045A34A /* UIImageViewExtensions.swift */,
 			);
 			path = UIkit;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0D5F9EC24F779CD0045A34A /* UIImageViewExtensions.swift in Sources */,
 				F0D5F9C524F6E57B0045A34A /* SecondViewController.swift in Sources */,
 				F0D5F9EA24F763D90045A34A /* PokemonModel.swift in Sources */,
 				F0D5F9DF24F744FD0045A34A /* PokemonViewController.swift in Sources */,
