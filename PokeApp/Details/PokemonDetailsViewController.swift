@@ -12,10 +12,28 @@ class PokemonDetailsViewController: UIViewController {
 
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var mainLabel: UILabel!
+    
+    
+    var pokemonImage = UIImage()
+    var pokemonName = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+    }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.mainImage.image = pokemonImage
+        self.mainLabel.text = pokemonName
+    }
+    
+    override func viewWillLayoutSubviews() {
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
 

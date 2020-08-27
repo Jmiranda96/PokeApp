@@ -30,15 +30,22 @@ class PokemonViewController: UIViewController, PokemonDelegate {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        
+        if segue.identifier == "pokemonDetails" {
+            if let vc = segue.destination as? PokemonDetailsViewController {
+                let selectedCell = self.tableView.cellForRow(at: self.tableView!.indexPathForSelectedRow!) as! PokemonTableViewCell
+                vc.pokemonImage = selectedCell.mainImage.image!
+                vc.pokemonName = selectedCell.mainTitle.text!
+            }
+        }
     }
-    */
+    
     
     // MARK: - PokemonDelegate
     func updateList() {
@@ -64,6 +71,10 @@ extension PokemonViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "pokemonDetails", sender: nil)
     }
     
     
