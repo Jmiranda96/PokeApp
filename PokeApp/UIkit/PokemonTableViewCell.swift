@@ -35,6 +35,10 @@ class PokemonTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    override func prepareForReuse() {
+        print("reuse")
+    }
+    
     func setupPokemonCell(name: String, number: Int, sprite: String, types: [String]){
         self.mainTitle.text = name
         self.secondaryTitle.text = String(format: "#%03d", number)

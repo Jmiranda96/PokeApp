@@ -35,15 +35,8 @@ class PokemonModel {
             case .success(let pokemons):
                 self.pagedObject = pokemons
                 
-                pokemons.results?.forEach({ (poke) in
-                    
-                    let pokeResource = poke as! PKMNamedAPIResource
-                    self.getPokemonDetails(name: pokeResource.name!)
-                })
                 
-                DispatchQueue.main.async {
-                    self.delegate.updateList()
-                }
+                self.loadList()
                 
                 break
                     
@@ -53,22 +46,58 @@ class PokemonModel {
         }
     }
     
-    func getPokemonDetails(name: String) {
-        pokeAPI.pokemonService.fetchPokemon(name) { result in
-            switch result {
-            case .success(let pokemon):
-                
-                var types = [String]()
+    
+    func loadList(index: Int = 0){
+        
+        guard index <= self.pagedObject.results!.count-1 else {
+            return
+        }
+        
+        let pokemon = self.pagedObject.results![index] as! PKMNamedAPIResource
+        
+        getPokemonDetails(name: pokemon.name! ) { (success) in
+            self.publishPokemonList()
+            guard success else {
+                return
+            }
+            self.loadList(index: index+1)
+        }
+    }
+    
+    
+    func getPokemonDetails(name: String, completion: @escaping (Bool) -> Void) {
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.pokeAPI.pokemonService.fetchPokemon(name) { result in
+                switch result {
+                case .success(let pokemon):
                     
-                pokemon.types?.forEach({ (pokeType) in
-                    types.append((pokeType.type?.name)!)
-                })
-                
-                self.pokemonList.append(PokemonInfo(name: pokemon.name!.capitalized, spriteURL: pokemon.sprites!.frontDefault!, types: types , number: pokemon.id!))
-                
-            case .failure(let error):
-                print(error.localizedDescription)
+                    var types = [String]()
+                        
+                    pokemon.types?.forEach({ (pokeType) in
+                        types.append((pokeType.type?.name)!)
+                    })
+                    
+                    self.pokemonList.append(PokemonInfo(name: pokemon.name!.capitalized, spriteURL: pokemon.sprites!.frontDefault!, types: types , number: pokemon.id!))
+
+                    completion(true)
+                    
+                case .failure(let error):
+                    completion(false)
+                    print(error.localizedDescription)
+                }
             }
         }
     }
+
+    
+    func publishPokemonList(by: String = ""){
+        DispatchQueue.main.async {
+            self.pokemonList.sort { (Poke1, Poke2) -> Bool in
+                return Poke1.number < Poke2.number
+            }
+            self.delegate.updateList()
+        }
+    }
+    
 }

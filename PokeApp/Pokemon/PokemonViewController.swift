@@ -18,13 +18,13 @@ class PokemonViewController: UIViewController, PokemonDelegate {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-
+        
+        model.getPokemonList()
         let nib = UINib(nibName: "PokemonTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "PokemonTableViewCell")
         
         
         model.delegate = self
-        model.getPokemonList()
         
         // Do any additional setup after loading the view.
     }
