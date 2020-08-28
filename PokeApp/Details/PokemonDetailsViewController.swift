@@ -120,7 +120,7 @@ class PokemonDetailsViewController: UIViewController, PokemonDetailProtocol {
         statBarEmpty.heightAnchor.constraint(equalToConstant: 10).isActive = true
         
         statBarFill.leftAnchor.constraint(equalTo: statNumber.rightAnchor, constant: 10).isActive = true
-        statBarFill.widthAnchor.constraint(equalToConstant: CGFloat(Double(value)*2.5)).isActive = true
+        statBarFill.widthAnchor.constraint(equalToConstant: CGFloat(Double(value)*2)).isActive = true
 //        statBarFill.widthAnchor.constraint(equalTo: statBarEmpty.widthAnchor, multiplier: CGFloat(value/100)).isActive = true
         statBarFill.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         statBarFill.heightAnchor.constraint(equalToConstant: 10).isActive = true

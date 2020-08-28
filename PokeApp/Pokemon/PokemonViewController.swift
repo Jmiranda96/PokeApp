@@ -54,7 +54,8 @@ class PokemonViewController: UIViewController, PokemonDelegate {
                 let selectedIndex = self.tableView!.indexPathForSelectedRow!
                 
                 let selectedCell = self.tableView.cellForRow(at: selectedIndex) as! PokemonTableViewCell
-                vc.pokemonInfo = model.pokemonList[selectedIndex.row]
+                
+                vc.pokemonInfo = isFiltering ? filteredPokemons[selectedIndex.row] : model.pokemonList[selectedIndex.row]
                 vc.pokemonImage = selectedCell.mainImage.image!
             }
         }
@@ -69,7 +70,7 @@ class PokemonViewController: UIViewController, PokemonDelegate {
     func searchBarSetup(){
         self.navigationItem.title = "Pokemom's Index"
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Number/Name/Type"
         navigationItem.searchController = searchController
         definesPresentationContext = true
