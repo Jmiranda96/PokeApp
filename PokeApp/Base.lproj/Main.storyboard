@@ -54,7 +54,7 @@
                         <color key="selectedImageTintColor" cocoaTouchSystemColor="darkTextColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="wdz-yK-Em0" kind="relationship" relationship="viewControllers" id="ALc-EM-ZYW"/>
+                        <segue destination="pgF-TS-J2H" kind="relationship" relationship="viewControllers" id="MVT-mt-mrB"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="zta-hF-Vle" kind="relationship" relationship="viewControllers" id="3Rz-1R-zIb"/>
                     </connections>
@@ -99,6 +99,30 @@
             <point key="canvasLocation" x="916" y="800"/>
         </scene>
         <!--Pokemon-->
+        <scene sceneID="ibV-co-C9h">
+            <objects>
+                <navigationController id="pgF-TS-J2H" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Pokemon" selectedImage="Pokemon Icon" id="kCQ-NR-7z4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eXx-Le-ZP5">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c7e-vJ-HGk">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="wdz-yK-Em0" kind="relationship" relationship="rootViewController" id="GLY-3V-CR8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HnI-9t-YnA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-925" y="800"/>
+        </scene>
+        <!--Pokemon-->
         <scene sceneID="Ag7-QM-yBm">
             <objects>
                 <viewController id="wdz-yK-Em0" customClass="PokemonViewController" customModule="PokeApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -107,7 +131,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YwL-g4-fK7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -121,6 +145,7 @@
                         <viewLayoutGuide key="safeArea" id="KTl-3w-JSc"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Pokemon" image="Pokemon Icon" id="dtG-wi-RpW"/>
+                    <navigationItem key="navigationItem" id="3zQ-sm-3Ay"/>
                     <connections>
                         <outlet property="tableView" destination="YwL-g4-fK7" id="ObH-sO-8at"/>
                         <segue destination="jaa-y5-V0d" kind="presentation" identifier="pokemonDetails" id="JiM-MM-XZT"/>
@@ -128,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ywl-2F-Z4l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-849" y="800"/>
+            <point key="canvasLocation" x="-926" y="1493"/>
         </scene>
         <!--Pokemon Details View Controller-->
         <scene sceneID="Xi5-9e-gUU">
@@ -233,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hrw-Wg-XA3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1202.8985507246377" y="-110.49107142857143"/>
+            <point key="canvasLocation" x="-152" y="1695"/>
         </scene>
     </scenes>
     <resources>

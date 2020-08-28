@@ -11,9 +11,18 @@ import UIKit
 class PokemonViewController: UIViewController, PokemonDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var serachBar: UISearchBar!
     
     var model = PokemonModel()
+    var filteredPokemons = [PokemonInfo]()
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,31 +67,56 @@ class PokemonViewController: UIViewController, PokemonDelegate {
     }
     
     func searchBarSetup(){
-        let searchController = UISearchController(searchResultsController: nil)
+        self.navigationItem.title = "Pokemom's Index"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = "Search By Number/Name/Type"
+        searchController.searchBar.placeholder = "Number/Name/Type"
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        
+        self.filteredPokemons = model.pokemonList.filter({ (pokemon: PokemonInfo) -> Bool in
+            
+            let byName = pokemon.name.lowercased().contains(searchText.lowercased())
+            
+            var byNumber: Bool = false
+            if let searchNumber = Int(searchText) {
+                byNumber = pokemon.number == searchNumber
+            }
+            
+            let byType = pokemon.types.contains(searchText.lowercased())
+            
+            
+            return byName || byNumber || byType
+        })
+
+        tableView.reloadData()
+    }
+      
 
 }
 
 extension PokemonViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
-    // TODO
+    let searchBar = searchController.searchBar
+    filterContentForSearchText(searchBar.text!)
   }
 }
 
 extension PokemonViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+          return filteredPokemons.count
+        }
         return self.model.pokemonList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonTableViewCell", for: indexPath) as! PokemonTableViewCell
         
-        let pokemonInfo = self.model.pokemonList[indexPath.row]
+        let pokemonInfo = isFiltering ? filteredPokemons[indexPath.row] : self.model.pokemonList[indexPath.row]
         
         cell.setupPokemonCell(name: pokemonInfo.name, number: pokemonInfo.number, sprite: pokemonInfo.spriteURL, types: pokemonInfo.types)
         
