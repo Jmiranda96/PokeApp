@@ -36,7 +36,6 @@ class PokemonTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        print("reuse")
     }
     
     func setupPokemonCell(name: String, number: Int, sprite: String, types: [String]){
