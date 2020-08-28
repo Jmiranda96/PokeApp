@@ -21,7 +21,7 @@ class PokemonDetailsViewController: UIViewController {
     
     var pokemonImage = UIImage()
     var pokemonName = String()
-    var pokemonColor = UIColor()
+    var pokemonColor = UIColor.black
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,19 +77,56 @@ class PokemonDetailsViewController: UIViewController {
         view.heightAnchor.constraint(equalToConstant: 20).isActive = true
         view.backgroundColor = UIColor.clear
         let statName = UILabel()
-        
+
         statName.font = UIFont(name: "Avenir-Heavy", size: 12)
         statName.textColor = self.pokemonColor
         statName.text = name
         
         let statNumber = UILabel()
+
+        statNumber.font = UIFont(name: "Avenir-Book", size: 14)
+        statNumber.textColor = UIColor.black.withAlphaComponent(0.7)
+        statNumber.text = String(format: "%03d", value)
+
+        let statBarEmpty = UIView()
+        statBarEmpty.backgroundColor = UIColor.lightGray
+        statBarEmpty.layer.cornerRadius = 5
+        statBarEmpty.clipsToBounds = true
         
-        statNumber.font = UIFont(name: "Avenir-Book", size: 12)
+        let statBarFill = UIView()
+        statBarFill.backgroundColor = self.pokemonColor
+        statBarFill.layer.cornerRadius = 5
+        statBarFill.clipsToBounds = true
         
         
+        view.addSubview(statName)
+        view.addSubview(statNumber)
+        view.addSubview(statBarEmpty)
+        view.addSubview(statBarFill)
         
+        statName.translatesAutoresizingMaskIntoConstraints = false
+        statNumber.translatesAutoresizingMaskIntoConstraints = false
+        statBarEmpty.translatesAutoresizingMaskIntoConstraints = false
+        statBarFill.translatesAutoresizingMaskIntoConstraints = false
+        
+        statName.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        statName.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        statNumber.leftAnchor.constraint(equalTo: statName.rightAnchor, constant: 10).isActive = true
+        statNumber.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        statBarEmpty.leftAnchor.constraint(equalTo: statNumber.rightAnchor, constant: 10).isActive = true
+        statBarEmpty.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        statBarEmpty.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        statBarEmpty.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        
+        statBarFill.leftAnchor.constraint(equalTo: statNumber.rightAnchor, constant: 10).isActive = true
+        statBarFill.widthAnchor.constraint(equalToConstant: CGFloat(Double(value)*2.5)).isActive = true
+//        statBarFill.widthAnchor.constraint(equalTo: statBarEmpty.widthAnchor, multiplier: CGFloat(value/100)).isActive = true
+        statBarFill.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        statBarFill.heightAnchor.constraint(equalToConstant: 10).isActive = true
         return view
     }
+    
     /*
     // MARK: - Navigation
 
