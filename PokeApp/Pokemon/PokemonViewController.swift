@@ -11,6 +11,7 @@ import UIKit
 class PokemonViewController: UIViewController, PokemonDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var serachBar: UISearchBar!
     
     var model = PokemonModel()
     
@@ -18,6 +19,7 @@ class PokemonViewController: UIViewController, PokemonDelegate {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        searchBarSetup()
         
         model.getPokemonList()
         let nib = UINib(nibName: "PokemonTableViewCell", bundle: nil)
@@ -39,9 +41,12 @@ class PokemonViewController: UIViewController, PokemonDelegate {
         
         if segue.identifier == "pokemonDetails" {
             if let vc = segue.destination as? PokemonDetailsViewController {
-                let selectedCell = self.tableView.cellForRow(at: self.tableView!.indexPathForSelectedRow!) as! PokemonTableViewCell
+                
+                let selectedIndex = self.tableView!.indexPathForSelectedRow!
+                
+                let selectedCell = self.tableView.cellForRow(at: selectedIndex) as! PokemonTableViewCell
+                vc.pokemonInfo = model.pokemonList[selectedIndex.row]
                 vc.pokemonImage = selectedCell.mainImage.image!
-                vc.pokemonName = selectedCell.mainTitle.text!
             }
         }
     }
@@ -51,7 +56,22 @@ class PokemonViewController: UIViewController, PokemonDelegate {
     func updateList() {
         self.tableView.reloadData()
     }
+    
+    func searchBarSetup(){
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Search By Number/Name/Type"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
 
+}
+
+extension PokemonViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    // TODO
+  }
 }
 
 extension PokemonViewController: UITableViewDelegate, UITableViewDataSource {

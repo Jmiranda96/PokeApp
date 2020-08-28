@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PokemonDetailsViewController: UIViewController {
+class PokemonDetailsViewController: UIViewController, PokemonDetailProtocol {
 
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var mainView: UIView!
@@ -20,35 +20,27 @@ class PokemonDetailsViewController: UIViewController {
     @IBOutlet weak var backGroundView: UIView!
     
     var pokemonImage = UIImage()
-    var pokemonName = String()
-    var pokemonColor = UIColor.black
+    var pokemonColor = UIColor.green
+    var pokemonInfo: PokemonInfo!
+    
+    var model = PokemonDetailsModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.pokemonColor = self.model.getPokeColor(type: self.pokemonInfo.types[0])
         self.backgroundLayer()
+        model.getPokeDescription(pokeID: pokemonInfo.number)
         self.mainImage.image = pokemonImage
-//
-//
-        // Do any additional setup after loading the view.
-    }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setupStats()
-    }
-    
-    override func viewWillLayoutSubviews() {
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
+        self.mainTitle.text = self.pokemonInfo.name
+        self.getTypeTag()
+        self.setupStats()
+        model.delegate = self
     }
     
     func backgroundLayer(){
         let layer = CAGradientLayer()
         layer.frame = backGroundView.bounds
-        layer.colors = [UIColor.yellow.cgColor, UIColor.green.cgColor]
+        layer.colors = [self.pokemonColor.cgColor, self.pokemonColor.withAlphaComponent(0.5).cgColor]
         layer.startPoint = CGPoint(x: 0, y: 0.5)
         layer.endPoint = CGPoint(x:1, y:0.5)
         backGroundView.layer.addSublayer(layer)
@@ -60,12 +52,19 @@ class PokemonDetailsViewController: UIViewController {
         self.mainView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
+    func setDescription() {
+        DispatchQueue.main.async {
+            self.pokemonDescription.text = self.model.pokeDescription
+        }
+    }
+    
     func setupStats() {
         
-        self.statsStack.addArrangedSubview(getStatsBar())
-        self.statsStack.addArrangedSubview(getStatsBar())
-        self.statsStack.addArrangedSubview(getStatsBar())
-        self.statsStack.addArrangedSubview(getStatsBar())
+        let statsName = ["HP","ATK","DEF","SATK","SDEF","SPD"]
+        
+        for (index, value) in self.pokemonInfo.stats.enumerated() {
+            self.statsStack.addArrangedSubview(getStatsBar(name: statsName[index], value: value))
+        }
        
     }
 
@@ -110,6 +109,7 @@ class PokemonDetailsViewController: UIViewController {
         statBarFill.translatesAutoresizingMaskIntoConstraints = false
         
         statName.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        statName.widthAnchor.constraint(equalToConstant: 35).isActive = true
         statName.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         statNumber.leftAnchor.constraint(equalTo: statName.rightAnchor, constant: 10).isActive = true
         statNumber.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -127,6 +127,10 @@ class PokemonDetailsViewController: UIViewController {
         return view
     }
     
+    
+    func getTypeTag() {
+        self.typeImage.image = UIImage(named: "Tag-"+pokemonInfo.types[0].capitalized)
+    }
     /*
     // MARK: - Navigation
 

@@ -18,6 +18,7 @@ struct PokemonInfo {
     var spriteURL: String
     var types: [String]
     var number: Int
+    var stats: [Int]
 }
 
 class PokemonModel {
@@ -78,7 +79,12 @@ class PokemonModel {
                         types.append((pokeType.type?.name)!)
                     })
                     
-                    self.pokemonList.append(PokemonInfo(name: pokemon.name!.capitalized, spriteURL: pokemon.sprites!.frontDefault!, types: types , number: pokemon.id!))
+                    var stats = [Int]()
+                    pokemon.stats?.forEach({ (pokeStats) in
+                        stats.append(pokeStats.baseStat!)
+                    })
+                    
+                    self.pokemonList.append(PokemonInfo(name: pokemon.name!.capitalized, spriteURL: pokemon.sprites!.frontDefault!, types: types , number: pokemon.id!, stats: stats))
 
                     completion(true)
                     

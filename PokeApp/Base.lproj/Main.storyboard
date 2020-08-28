@@ -142,28 +142,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1412"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuf-cd-TUo">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="454.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="489"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sw-mo-IUy">
-                                                <rect key="frame" x="0.0" y="144" width="414" height="310.5"/>
+                                                <rect key="frame" x="0.0" y="144" width="414" height="345"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tag-Bug" translatesAutoresizingMaskIntoConstraints="NO" id="uNd-W7-hR5">
-                                                        <rect key="frame" x="137" y="70.5" width="140" height="60"/>
+                                                        <rect key="frame" x="137" y="105" width="140" height="60"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RT-hw-eLE">
-                                                        <rect key="frame" x="15" y="130.5" width="384" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RT-hw-eLE">
+                                                        <rect key="frame" x="15" y="165" width="384" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyy-6N-SeN">
-                                                        <rect key="frame" x="186" y="40" width="42" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="158.5" y="40" width="97.5" height="55"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="40"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="104" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ezb-Rb-mB7">
-                                                        <rect key="frame" x="20" y="171" width="374" height="104"/>
+                                                        <rect key="frame" x="20" y="205.5" width="374" height="104"/>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
